@@ -29,11 +29,13 @@ abstract class AppTheme {
           showUnselectedLabels: false,
           selectedItemColor: AppColors.primary,
           unselectedItemColor: AppColors.grey),
-      scaffoldBackgroundColor: AppColors.accent,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         shape:
             StadiumBorder(side: BorderSide(color: AppColors.white, width: 4)),
       ),
+  scaffoldBackgroundColor: AppColors.accent,
   dividerTheme: DividerThemeData(thickness: 3, color: AppColors.primary)
   );
+  static ThemeData darkTheme = ThemeData();
+
 }
