@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: buildAppBar(),
       bottomNavigationBar: BottomNav(),
       body:
-          currentSelectedTabIndex == 0 ? const ListTab() : const SettingsTab(),
+          currentSelectedTabIndex == 0 ? ListTab() : const SettingsTab(),
       floatingActionButton: buildFab(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

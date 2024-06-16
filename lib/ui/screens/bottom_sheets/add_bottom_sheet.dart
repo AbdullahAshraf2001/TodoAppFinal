@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:todo/models/todo_dm.dart';
+
 import '../../utils/app_colors.dart';
 import '../../utils/app_theme.dart';
 import '../widgets/my_text_field.dart';
@@ -28,47 +31,72 @@ class _AddBottomSheetState extends State<AddBottomSheet> {
             textAlign: TextAlign.center,
             style: AppTheme.bottomSheetTitleTextStyle,
           ),
-          const SizedBox(height: 16,),
-          MyTextField(hintText: "Enter task title", controller: titleController,),
-          const SizedBox(height: 8,),
-          MyTextField(hintText: "Enter task description", controller: descriptionController,),
-          const SizedBox(height: 16,),
+          const SizedBox(
+            height: 16,
+          ),
+          MyTextField(
+            hintText: "Enter task title",
+            controller: titleController,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          MyTextField(
+            hintText: "Enter task description",
+            controller: descriptionController,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
           Text(
             "Select date",
             style: AppTheme.bottomSheetTitleTextStyle
                 .copyWith(fontWeight: FontWeight.w600),
           ),
           InkWell(
-            onTap: (){
+            onTap: () {
               showMyDatePicker();
             },
             child: Text(
               "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
               textAlign: TextAlign.center,
-              style: AppTheme.bottomSheetTitleTextStyle
-                  .copyWith(fontWeight: FontWeight.normal, color: AppColors.grey),
+              style: AppTheme.bottomSheetTitleTextStyle.copyWith(
+                  fontWeight: FontWeight.normal, color: AppColors.grey),
             ),
           ),
           const Spacer(),
-          ElevatedButton(onPressed: () {
-            addTodoToFirestore();
-          }, child: const Text("Add"))
+          ElevatedButton(
+              onPressed: () {
+                addTodoToFirestore();
+              },
+              child: const Text("Add"))
         ],
       ),
     );
   }
 
   void addTodoToFirestore() {
-
+    CollectionReference todosCollectionRef =
+        FirebaseFirestore.instance.collection(TodoDM.collectionName);
+    DocumentReference newEmptyDoc = todosCollectionRef.doc();
+    newEmptyDoc.set({
+      "id": newEmptyDoc.id,
+      "title": titleController.text,
+      "description": descriptionController.text,
+      "date": selectedDate,
+      "isDone": false,
+    }).timeout(Duration(milliseconds: 300), onTimeout: () {
+      Navigator.pop(context);
+    });
   }
 
   Future<void> showMyDatePicker() async {
-    selectedDate = await showDatePicker(context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(Duration(days: 365)))?? selectedDate;
+    selectedDate = await showDatePicker(
+            context: context,
+            initialDate: selectedDate,
+            firstDate: DateTime.now(),
+            lastDate: DateTime.now().add(Duration(days: 365))) ??
+        selectedDate;
     setState(() {});
   }
-
 }
-
