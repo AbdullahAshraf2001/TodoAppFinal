@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo/ui/screens/auth/login/login_screen.dart';
+
 import '../../utils/app_assets.dart';
-import '../home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = "splash";
@@ -15,10 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, HomeScreen.routeName);
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, LoginScreen.routeName);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

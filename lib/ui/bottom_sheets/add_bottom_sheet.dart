@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/models/app_user.dart';
 import 'package:todo/models/todo_dm.dart';
 import 'package:todo/ui/provider/list_provider.dart';
+import '../screens/widgets/my_text_field.dart';
+import '../utils/app_colors.dart';
+import '../utils/app_theme.dart';
 
-import '../../utils/app_colors.dart';
-import '../../utils/app_theme.dart';
-import '../widgets/my_text_field.dart';
 
 class AddBottomSheet extends StatefulWidget {
   const AddBottomSheet({super.key});
@@ -79,20 +80,19 @@ class _AddBottomSheetState extends State<AddBottomSheet> {
     );
   }
 
-  void addTodoToFirestore() {
+  Future<void> addTodoToFirestore() async {
     CollectionReference todosCollectionRef =
-        FirebaseFirestore.instance.collection(TodoDM.collectionName);
+    AppUser.collection().doc(AppUser.currentUser!.id).collection(TodoDM.collectionName);
     DocumentReference newEmptyDoc = todosCollectionRef.doc();
-    newEmptyDoc.set({
+    await newEmptyDoc.set({
       "id": newEmptyDoc.id,
       "title": titleController.text,
       "description": descriptionController.text,
       "date": selectedDate,
       "isDone": false,
-    }).timeout(Duration(milliseconds: 300), onTimeout: () {
-      provider.refreshTodosList();
-      Navigator.pop(context);
     });
+    provider.refreshTodosList();
+    Navigator.pop(context);
   }
 
   Future<void> showMyDatePicker() async {

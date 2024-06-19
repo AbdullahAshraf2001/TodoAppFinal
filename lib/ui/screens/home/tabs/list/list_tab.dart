@@ -60,7 +60,7 @@ class _ListTabState extends State<ListTab> {
                 dayColor: AppColors.white,
                 activeDayColor: AppColors.primary,
                 activeBackgroundDayColor: AppColors.white,
-                dotsColor: AppColors.transparent,
+                dotsColor: Colors.transparent,
               ),
             ],
           ),

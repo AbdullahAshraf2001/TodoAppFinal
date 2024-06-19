@@ -36,6 +36,6 @@ abstract class AppTheme {
   scaffoldBackgroundColor: AppColors.accent,
   dividerTheme: DividerThemeData(thickness: 3, color: AppColors.primary)
   );
-  static ThemeData darkTheme = ThemeData();
+  // static ThemeData darkTheme = ThemeData();
 
 }

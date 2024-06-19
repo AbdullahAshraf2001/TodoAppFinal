@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/models/app_user.dart';
+import 'package:todo/ui/bottom_sheets/add_bottom_sheet.dart';
+import 'package:todo/ui/provider/list_provider.dart';
+import 'package:todo/ui/screens/auth/login/login_screen.dart';
 import 'package:todo/ui/screens/home/tabs/list/list_tab.dart';
 import 'package:todo/ui/screens/home/tabs/settings/settings_tab.dart';
 import 'package:todo/ui/utils/app_colors.dart';
 
-import '../bottom_sheets/add_bottom_sheet.dart';
-
 class HomeScreen extends StatefulWidget {
   static const routeName = "home";
 
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,13 +19,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentSelectedTabIndex = 0;
+  late ListProvider provider;
+
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return Scaffold(
       appBar: buildAppBar(),
       bottomNavigationBar: BottomNav(),
-      body:
-          currentSelectedTabIndex == 0 ? ListTab() : const SettingsTab(),
+      body: currentSelectedTabIndex == 0 ? ListTab() : const SettingsTab(),
       floatingActionButton: buildFab(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
@@ -36,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               isScrollControlled: true,
               builder: (_) => Padding(
                     padding: MediaQuery.of(context).viewInsets,
-                    child: AddBottomSheet(),
+                    child: const AddBottomSheet(),
                   ));
         },
         child: const Icon(
@@ -74,7 +79,16 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
   PreferredSizeWidget buildAppBar() => AppBar(
-        title: const Text("To Do"),
+        title: Text("Welcome ${AppUser.currentUser!.username}"),
+        actions: [
+          InkWell(
+              onTap: () {
+                AppUser.currentUser = null;
+                provider.todos.clear();
+                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+              },
+              child: Icon(Icons.logout))
+        ],
         toolbarHeight: MediaQuery.of(context).size.height * .1,
         automaticallyImplyLeading: false,
       );
