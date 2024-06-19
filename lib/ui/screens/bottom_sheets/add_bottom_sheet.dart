@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo/models/todo_dm.dart';
+import 'package:todo/ui/provider/list_provider.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/app_theme.dart';
@@ -17,9 +19,11 @@ class _AddBottomSheetState extends State<AddBottomSheet> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   DateTime selectedDate = DateTime.now();
+  late ListProvider provider;
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return Container(
       padding: const EdgeInsets.all(12),
       height: MediaQuery.of(context).size.height * .4,
@@ -86,6 +90,7 @@ class _AddBottomSheetState extends State<AddBottomSheet> {
       "date": selectedDate,
       "isDone": false,
     }).timeout(Duration(milliseconds: 300), onTimeout: () {
+      provider.refreshTodosList();
       Navigator.pop(context);
     });
   }
