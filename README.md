@@ -1,6 +1,6 @@
 # todo
 
-A new Flutter project.
+Todo application designed to help users organize their daily activities. Users can add, edit, mark as completed, and delete tasks easily.
 
 ## Getting Started
 
