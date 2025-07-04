@@ -15,7 +15,7 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-### screenshots from the application
+## screenshots from the application
 
 <h3>Splash Screen</h3>
 <img src="appImages/1.jpg" width="300"/>
