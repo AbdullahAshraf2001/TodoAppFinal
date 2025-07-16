@@ -26,6 +26,9 @@ samples, guidance on mobile development, and a full API reference.
 <h3>Create Account Interface</h3>
 <img src="appImages/3.jpg" width="300"/>
 
+<h3>Storing User Information in Firestore</h3>
+<img src="appImages/11.jpg" width="300"/>
+
 <h3>Home Page Screen</h3>
 <img src="appImages/4.jpg" width="300"/>
 
@@ -46,3 +49,5 @@ samples, guidance on mobile development, and a full API reference.
 
 <h3>Swipe to Delete The Task</h3>
 <img src="appImages/10.jpg" width="300"/>
+
+
