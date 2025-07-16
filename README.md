@@ -23,5 +23,26 @@ samples, guidance on mobile development, and a full API reference.
 <h3>Sign in Screen</h3>
 <img src="appImages/2.jpg" width="300"/>
 
-<h3>Sign up Screen</h3>
+<h3>Create Account Interface</h3>
 <img src="appImages/3.jpg" width="300"/>
+
+<h3>Home Page Screen</h3>
+<img src="appImages/4.jpg" width="300"/>
+
+<h3>Task Creation Bottom Sheet</h3>
+<img src="appImages/5.jpg" width="300"/>
+
+<h3>Keyboard-Aware Input Handling</h3>
+<img src="appImages/6.jpg" width="300"/>
+
+<h3>Select a Custom Date</h3>
+<img src="appImages/7.jpg" width="300"/>
+
+<h3>Enter Task Title & Details</h3>
+<img src="appImages/8.jpg" width="300"/>
+
+<h3>Task Added Successfully</h3>
+<img src="appImages/9.jpg" width="300"/>
+
+<h3>Swipe to Delete The Task</h3>
+<img src="appImages/10.jpg" width="300"/>
