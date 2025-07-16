@@ -27,7 +27,7 @@ samples, guidance on mobile development, and a full API reference.
 <img src="appImages/3.jpg" width="300"/>
 
 <h3>Storing User Information in Firestore</h3>
-<img src="appImages/11.jpg" width="300"/>
+<img src="appImages/11.png" width="300"/>
 
 <h3>Home Page Screen</h3>
 <img src="appImages/4.jpg" width="300"/>
